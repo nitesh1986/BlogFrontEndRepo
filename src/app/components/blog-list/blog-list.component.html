@@ -1,0 +1,12 @@
+  <div class="container mt-4">
+    <button class="btn btn-primary mb-3" (click)="openNewPostForm()">New</button>
+    <blog-form *ngIf="isFormVisible" (formClose)="closeForm()" (formSubmit)="handleFormSubmit($event)" [postToEdit]="postToEdit"></blog-form>
+    <div *ngFor="let post of posts" class="card mb-3">
+      <div class="card-body">
+        <p class="card-text">{{ post.text }}</p>
+        <p class="card-text"><small class="text-muted">Created: {{ post.username }} Created date: {{ post.dateCreated | date }}</small></p>
+        <button class="btn btn-secondary" (click)="onEdit(post)">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete(post.id)">Delete</button>
+      </div>
+    </div>
+   </div>

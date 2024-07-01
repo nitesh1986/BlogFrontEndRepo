@@ -1,0 +1,11 @@
+.is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .invalid-feedback {
+    display: block;
+    color: #dc3545;
+  }
+  button {
+    margin-right: 15px; /* Adjust the value as needed */
+  }
