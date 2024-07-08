@@ -18,11 +18,7 @@ export class BlogService {
     return this.http.get<BlogPost[]>(this.apiUrl).pipe(
       catchError(this.handleError));
   }
-  // GetBlogPosts(): Observable<BlogPost[]> 
-  // {
-  //   return this.http.get<BlogPost[]>(this.apiUrl);
-  // }
-
+  
   //Blog Creation
   CreateBlogPost(blogPost: BlogPost): Observable<void> 
   {
@@ -31,12 +27,7 @@ export class BlogService {
     );
   }
 
-  // CreateBlogPost(blogPost: BlogPost): Observable<void> 
-  // {
-  //   return this.http.post<void>(this.apiUrl, blogPost)
-    
-  // }
-
+  
   //Blog Updation
  UpdateBlogPost(post: BlogPost): Observable<void> 
   {
@@ -45,26 +36,26 @@ export class BlogService {
     );
   }
 
-  // UpdateBlogPost(post: BlogPost): Observable<void> 
-  // {
-  //   return this.http.put<void>(`${this.apiUrl}/${post.id}`, post);
-    
-  // }
-  
-  //Blog deletion
-//  deleteBlogPost(id: number): Observable<void> 
-//   {
-//     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-    
-//   }
-
   deleteBlogPost(id: number): Observable<void> 
   {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       catchError(this.handleError)
     );
   }
-
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = '';
+    if (error.error instanceof Error) {
+      // Client-side error
+      console.error('Client-side error:', error.error.message);
+      errorMessage = `Client-side error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      console.error(`Server-side error: ${error.status} ${error.message}`);
+      errorMessage = `Server-side error: ${error.status} ${error.message}`;
+    }
+    return throwError(() => new Error(errorMessage));
+  }
+  }
   
   // private handleError(error: HttpErrorResponse) 
   // {
@@ -109,20 +100,7 @@ export class BlogService {
 //   return throwError(() => new Error('An error occurred. Check the console for more details.'));
 // }
 
-private handleError(error: HttpErrorResponse): Observable<never> {
-  let errorMessage = '';
-  if (error.error instanceof Error) {
-    // Client-side error
-    console.error('Client-side error:', error.error.message);
-    errorMessage = `Client-side error: ${error.error.message}`;
-  } else {
-    // Server-side error
-    console.error(`Server-side error: ${error.status} ${error.message}`);
-    errorMessage = `Server-side error: ${error.status} ${error.message}`;
-  }
-  return throwError(() => new Error(errorMessage));
-}
-}
+
 
 
 
