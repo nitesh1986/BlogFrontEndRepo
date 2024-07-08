@@ -1,8 +1,8 @@
  <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="username">Username</label>
-      <input id="username" formControlName="username" class="form-control" [ngClass]="{'is-invalid': formControls.username.invalid && formControls.username.touched}" />
-      <div *ngIf="formControls.username.invalid && formControls.username.touched" class="invalid-feedback">
+      <input id="username" formControlName="username" class="form-control" [ngClass]="{'is-invalid': formControls['username'].invalid && formControls['username'].touched}" />
+      <div *ngIf="formControls['username'].invalid && formControls['username'].touched" class="invalid-feedback">
         Username is required.
       </div>
     </div>
@@ -17,8 +17,8 @@
   
     <div class="form-group">
       <label for="text">Text</label>
-      <textarea id="text" formControlName="text" class="form-control" [ngClass]="{'is-invalid': formControls.text.invalid && formControls.text.touched}"></textarea>
-      <div *ngIf="formControls.text.invalid && formControls.text.touched" class="invalid-feedback">
+      <textarea id="text" formControlName="text" class="form-control" [ngClass]="{'is-invalid': formControls['text'].invalid && formControls['text'].touched}"></textarea>
+      <div *ngIf="formControls['text'].invalid && formControls['text'].touched" class="invalid-feedback">
         Text is required.
       </div>
     </div>
